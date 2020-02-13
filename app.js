@@ -1,5 +1,6 @@
-let log = require('./logger');
+const path =require('path');
 
-// logger=1;
-// console.log(logger);
-log('message!');
+let pathObject = path.parse(__filename);
+console.log(pathObject);
+
+const os=require('os');
