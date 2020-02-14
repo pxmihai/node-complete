@@ -1,16 +1,31 @@
-const EventEmitter = require('events');
+let jes={
+    "employees":[
+        {"firstName":"John", "lastName":"Doe"},
+        {"firstName":"Anna", "lastName":"Smith"},
+        {"firstName":"Peter", "lastName":"Jones"}
+    ]
+}
 
-const Logger=require('./logger');
-const logger=new Logger();
+let ray=[1,2,3]
 
 
-/*Register a listener*/
-logger.on('messageLogged',(arg) => {/*e,eventArg*/
-    console.log('Listener called',arg);
+const http=require('http');
+const server = http.createServer((req,res)=>{
+    if(req.url==='/'){
+        res.write('Hello World');
+        res.end();
+    }
+    if (req.url==='/api/courses'){
+        res.write(JSON.stringify(jes));
+        res.end();
+    }
 });
 
-logger.log('aMessage');
-console.log(logger.on);
-
+// server.on('connection',(socket)=>{
+//     console.log('new Conection');
+// });
+//server is eventemitter
+server.listen(3000);
+console.log('Listening on port 3000..');
 
 
